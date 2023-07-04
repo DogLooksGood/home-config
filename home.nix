@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, emacs-overlay, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -18,7 +18,9 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    emacs29-nox
+    (emacs-pgtk.override {
+      nativeComp = false;
+    })
     git
     pass
     simple-http-server
@@ -26,6 +28,8 @@
     clojure-lsp
     ripgrep
     mosh
+    fzf
+    zellij
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -47,6 +51,7 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".config/zellij".source = dotfiles/zellij;
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -70,7 +75,7 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "emacs";
   };
 
   # Let Home Manager install and manage itself.
