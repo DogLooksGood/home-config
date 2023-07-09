@@ -18,9 +18,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    (emacs-pgtk.override {
-      nativeComp = false;
-    })
+    emacs-pgtk
     git
     pass
     simple-http-server
@@ -28,10 +26,8 @@
     clojure-lsp
     ripgrep
     mosh
-    fzf
     zellij
     rnix-lsp
-    lmodern
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -50,19 +46,12 @@
   # plain files is through 'home.file'.
   home.file = {
     ".config/zellij".source = dotfiles/zellij;
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    ".profile".text = ''
+      . $HOME/.nix-profile/etc/profile.d/nix.sh
+    '';
   };
 
-  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = true;
 
   # You can also manage environment variables but you will have to manually
   # source
@@ -75,9 +64,42 @@
   #
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
-    EDITOR = "emacs";
+    EDITOR = "emacs -nw";
   };
 
   # Let Home Manager install and manage itself.
+  programs.zsh = {
+    enable = true;
+    dotDir = ".config/zsh";
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    shellAliases = {
+      n = "nix develop";
+      e = "emacs -nw";
+      z = "zellij --layout compact";
+    };
+    profileExtra = ''
+      . $HOME/.nix-profile/etc/profile.d/nix.sh
+    '';
+    oh-my-zsh = {
+      enable = true;
+      theme = "simple";
+    };
+  };
+
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+  };
+
+  programs.fzf = {
+    enableZshIntegration = true;
+    enable = true;
+  };
+
   programs.home-manager.enable = true;
+
+  programs.direnv.enable = true;
+
+  programs.direnv.nix-direnv.enable = true;
 }
