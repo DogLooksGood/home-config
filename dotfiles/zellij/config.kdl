@@ -1,18 +1,16 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
+keybinds clear-defaults=true {
     normal {
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
     }
     locked {
         bind "Alt g" { SwitchToMode "Normal"; }
     }
     resize {
         bind "Alt n" { SwitchToMode "Normal"; }
-        bind "h" "Left" { Resize "Increase Left"; }
-        bind "t" "Down" { Resize "Increase Down"; }
-        bind "c" "Up" { Resize "Increase Up"; }
-        bind "n" "Right" { Resize "Increase Right"; }
+        bind "h" { Resize "Increase Left"; }
+        bind "t" { Resize "Increase Down"; }
+        bind "c" { Resize "Increase Up"; }
+        bind "n" { Resize "Increase Right"; }
         bind "H" { Resize "Decrease Left"; }
         bind "T" { Resize "Decrease Down"; }
         bind "C" { Resize "Decrease Up"; }
@@ -22,10 +20,10 @@ keybinds {
     }
     pane {
         bind "Alt p" { SwitchToMode "Normal"; }
-        bind "h" "Left" { MoveFocus "Left"; }
-        bind "n" "Right" { MoveFocus "Right"; }
-        bind "t" "Down" { MoveFocus "Down"; }
-        bind "c" "Up" { MoveFocus "Up"; }
+        bind "h" { MoveFocus "Left"; }
+        bind "n" { MoveFocus "Right"; }
+        bind "t" { MoveFocus "Down"; }
+        bind "c" { MoveFocus "Up"; }
         bind "Tab" { SwitchFocus; }
         bind "Enter" { NewPane; SwitchToMode "Normal"; }
         bind "d" { NewPane "Down"; SwitchToMode "Normal"; }
@@ -35,7 +33,7 @@ keybinds {
         bind "z" { TogglePaneFrames; SwitchToMode "Normal"; }
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
-        bind "R" { SwitchToMode "RenamePane"; PaneNameInput 0;}
+        bind "." { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
         bind "Alt h" { SwitchToMode "Normal"; }
@@ -48,9 +46,9 @@ keybinds {
     }
     tab {
         bind "Alt t" { SwitchToMode "Normal"; }
-        bind "R" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "h" "Left" "Up" "c" { GoToPreviousTab; }
-        bind "n" "Right" "Down" "t" { GoToNextTab; }
+        bind "." { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "h" "c" { GoToPreviousTab; }
+        bind "n" "t" { GoToNextTab; }
         bind "Enter" { NewTab; SwitchToMode "Normal"; }
         bind "x" { CloseTab; SwitchToMode "Normal"; }
         bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
@@ -70,22 +68,21 @@ keybinds {
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "t" "Down" { ScrollDown; }
-        bind "c" "Up" { ScrollUp; }
-        bind "PageDown" "Right" "n" "@" { PageScrollDown; }
-        bind  "PageUp" "Left" "h" "/" { PageScrollUp; }
+        bind "t" { ScrollDown; }
+        bind "c" { ScrollUp; }
+        bind "n" "@" { PageScrollDown; }
+        bind "h" "/" { PageScrollUp; }
         bind "^" { HalfPageScrollDown; }
         bind "?" { HalfPageScrollUp; }
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
+        bind "Alt c" { Copy; }
     }
     search {
-        bind "Ctrl s" { SwitchToMode "Normal"; }
+        bind "Alt s" { SwitchToMode "Normal"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "t" "Down" { ScrollDown; }
-        bind "c" "Up" { ScrollUp; }
-        bind "Ctrl f" "PageDown" "Right" "n" "@" { PageScrollDown; }
-        bind "Ctrl b" "PageUp" "Left" "h" "/" { PageScrollUp; }
+        bind "t" { ScrollDown; }
+        bind "c" { ScrollUp; }
+        bind "n" "@" { PageScrollDown; }
+        bind "h" "/" { PageScrollUp; }
         bind "^" { HalfPageScrollDown; }
         bind "?" { HalfPageScrollUp; }
         bind "Space" { Search "down"; }
@@ -107,8 +104,8 @@ keybinds {
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
     session {
-        bind "Ctrl o" { SwitchToMode "Normal"; }
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
+        bind "Alt o" { SwitchToMode "Normal"; }
+        bind "Alt s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
     }
     shared_except "locked" {
@@ -167,7 +164,7 @@ plugins {
 //    - true
 //    - false (Default)
 //
-// simplified_ui true
+simplified_ui true
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -179,7 +176,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -215,17 +212,17 @@ theme "Paperlike"
 
 themes {
   Paperlike {
-    fg "#FFFFFF"
+    fg "#AAAAAA"
     bg "#000000"
     black "#000000"
-    red "#000000"
-    green "#777777"
-    yellow "#777777"
-    blue "#777777"
-    magenta "#777777"
-    cyan "#777777"
-    white "#777777"
-    orange "#777777"
+    red "#BBBBBB"
+    green "#FFFFFF"
+    yellow "#CCCCCC"
+    blue "#BBBBBB"
+    magenta "#BBBBBB"
+    cyan "#BBBBBB"
+    white "#CCCCCC"
+    orange "#BBBBBB"
   }
 }
 
@@ -263,7 +260,7 @@ themes {
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-// copy_command "wl-copy"                    // wayland
+copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 
 // Choose the destination for copied text
@@ -278,7 +275,7 @@ themes {
 // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
 //
-// copy_on_select false
+copy_on_select true
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL

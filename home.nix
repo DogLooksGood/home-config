@@ -28,6 +28,8 @@
     mosh
     zellij
     rnix-lsp
+    curl
+    firefox
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -67,6 +69,13 @@
     EDITOR = "emacs -nw";
   };
 
+  programs.bash = {
+    enable = true;
+    profileExtra = ''
+      . $HOME/.nix-profile/etc/profile.d/nix.sh
+    '';
+  };
+
   # Let Home Manager install and manage itself.
   programs.zsh = {
     enable = true;
@@ -76,14 +85,14 @@
     shellAliases = {
       n = "nix develop";
       e = "emacs -nw";
-      z = "zellij --layout compact";
+      z = "zellij --layout $HOME/.config/zellij/layout.kdl";
     };
     profileExtra = ''
       . $HOME/.nix-profile/etc/profile.d/nix.sh
     '';
     oh-my-zsh = {
       enable = true;
-      theme = "simple";
+      theme = "fishy";
     };
   };
 
