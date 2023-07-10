@@ -6,7 +6,7 @@ keybinds clear-defaults=true {
         bind "Alt g" { SwitchToMode "Normal"; }
     }
     resize {
-        bind "Alt n" { SwitchToMode "Normal"; }
+        bind "Alt r" { SwitchToMode "Normal"; }
         bind "h" { Resize "Increase Left"; }
         bind "t" { Resize "Increase Down"; }
         bind "c" { Resize "Increase Up"; }
@@ -36,7 +36,7 @@ keybinds clear-defaults=true {
         bind "." { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
-        bind "Alt h" { SwitchToMode "Normal"; }
+        bind "Alt m" { SwitchToMode "Normal"; }
         bind "," "Tab" { MovePane; }
         bind "." { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
@@ -45,7 +45,7 @@ keybinds clear-defaults=true {
         bind "n" "Right" { MovePane "Right"; }
     }
     tab {
-        bind "Alt t" { SwitchToMode "Normal"; }
+        bind "Alt w" { SwitchToMode "Normal"; }
         bind "." { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "h" "c" { GoToPreviousTab; }
         bind "n" "t" { GoToNextTab; }
@@ -128,7 +128,7 @@ keybinds clear-defaults=true {
         bind "Alt p" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
-        bind "Alt n" { SwitchToMode "Resize"; }
+        bind "Alt r" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
         bind "Alt s" { SwitchToMode "Scroll"; }
@@ -137,10 +137,10 @@ keybinds clear-defaults=true {
         bind "Alt o" { SwitchToMode "Session"; }
     }
     shared_except "tab" "locked" {
-        bind "Alt t" { SwitchToMode "Tab"; }
+        bind "Alt w" { SwitchToMode "Tab"; }
     }
     shared_except "move" "locked" {
-        bind "Alt h" { SwitchToMode "Move"; }
+        bind "Alt m" { SwitchToMode "Move"; }
     }
 }
 
@@ -208,21 +208,21 @@ pane_frames false
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "Paperlike"
+theme "paperlike"
 
 themes {
-  Paperlike {
-    fg "#AAAAAA"
-    bg "#000000"
-    black "#000000"
+  paperlike {
+    fg "#999999"
+    bg "#999999"
+    black "#FFFFFF"
     red "#BBBBBB"
-    green "#FFFFFF"
+    green "#000000"
     yellow "#CCCCCC"
-    blue "#BBBBBB"
+    blue "#000000"
     magenta "#BBBBBB"
     cyan "#BBBBBB"
-    white "#CCCCCC"
-    orange "#BBBBBB"
+    white "#AAAAAA"
+    orange "#000000"
   }
 }
 
