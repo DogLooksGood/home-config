@@ -2,7 +2,6 @@
   description = "Home Manager configuration of tianshu";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
@@ -14,25 +13,21 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, emacs-overlay, ... }:
+  outputs = { nixpkgs, home-manager, emacs-overlay, ... } @ inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."tianshu" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./home.nix
-          ({pkgs, ...}: {
-            nixpkgs.overlays = [ emacs-overlay.overlay ];
-          })
-        ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+      features = ./features;
+      dotfiles = ./dotfiles;
+    in
+    {
+      homeConfigurations = {
+        "tianshu@tianshu-laptop" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [ ./hosts/tianshu-laptop.nix ];
+          extraSpecialArgs = {
+            inherit inputs dotfiles features;
+            proxy = "http://172.29.32.1:7890";
+          };
+        };
       };
     };
 }

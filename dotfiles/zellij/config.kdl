@@ -4,6 +4,10 @@ keybinds clear-defaults=true {
     }
     locked {
         bind "Alt g" { SwitchToMode "Normal"; }
+        bind "Alt Left" { MoveFocusOrTab "Left"; }
+        bind "Alt Right" { MoveFocusOrTab "Right"; }
+        bind "Alt Down" { MoveFocus "Down"; }
+        bind "Alt Up" { MoveFocus "Up"; }
     }
     resize {
         bind "Alt r" { SwitchToMode "Normal"; }
@@ -176,7 +180,7 @@ simplified_ui true
 //   - true (default)
 //   - false
 //
-pane_frames false
+pane_frames true
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -208,9 +212,23 @@ pane_frames false
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "paperlike"
+theme "carbon"
 
 themes {
+  carbon {
+    fg "#AFAFAF"
+    bg "#202020"
+    black "#000000"
+    red "#cc725b"
+    green "#4b9e6b"
+    yellow "#bfaa6b"
+    blue "#4a95b5"
+    magenta "#cc725b"
+    cyan "#FFFFFF"
+    white "#FFFFFF"
+    orange "#bfaa6b"
+  }
+
   paperlike {
     fg "#999999"
     bg "#999999"
@@ -260,8 +278,9 @@ themes {
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-copy_command "wl-copy"                    // wayland
+// copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
+copy_command "clip.exe"                    // wsl
 
 // Choose the destination for copied text
 // Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
