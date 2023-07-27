@@ -5,7 +5,6 @@
   ... }:
 {
   home.packages = with pkgs; [
-    emacs28-nox
     git
     pass
     simple-http-server
@@ -22,6 +21,7 @@
 
   home.file = {
     ".config/zellij".source = /${dotfiles}/zellij;
+    ".config/wezterm".source = /${dotfiles}/wezterm;
     ".profile".text = ''
       . $HOME/.nix-profile/etc/profile.d/nix.sh
     '';
@@ -30,7 +30,7 @@
   fonts.fontconfig.enable = true;
 
   home.sessionVariables = {
-    EDITOR = "emacsclient -nw";
+    EDITOR = "emacsclient";
   };
 
   programs.bash = {
@@ -52,7 +52,7 @@
     };
     profileExtra = ''
       . $HOME/.nix-profile/etc/profile.d/nix.sh
-    '' + if proxy != null then "export ALL_PROXY=${proxy}" else "";
+    '' + (if proxy != null then "export ALL_PROXY=${proxy}" else "");
 
     oh-my-zsh = {
       enable = true;
