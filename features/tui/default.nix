@@ -1,7 +1,7 @@
 { pkgs,
   config,
   dotfiles,
-  proxy ? "http://localhost:7890",
+  proxy ? null,
   ... }:
 {
   home.packages = with pkgs; [
@@ -52,8 +52,8 @@
     };
     profileExtra = ''
       . $HOME/.nix-profile/etc/profile.d/nix.sh
-      export ALL_PROXY=${proxy}
-    '';
+    '' + if proxy != null then "export ALL_PROXY=${proxy}" else "";
+
     oh-my-zsh = {
       enable = true;
       theme = "simple";
