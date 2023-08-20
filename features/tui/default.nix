@@ -17,6 +17,7 @@
     curl
     wget
     tree
+    yarn
   ];
 
   home.file = {
