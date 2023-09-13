@@ -1,10 +1,10 @@
 { pkgs,
   config,
   dotfiles,
-  proxy ? null,
   ... }:
 {
   home.packages = with pkgs; [
+    emacs29-nox
     git
     pass
     simple-http-server
@@ -18,6 +18,9 @@
     wget
     tree
     yarn
+    tokei
+    zip
+    jet
   ];
 
   home.file = {
@@ -45,16 +48,23 @@
     enable = true;
     dotDir = ".config/zsh";
     enableCompletion = true;
-    enableAutosuggestions = true;
+    enableAutosuggestions = false;
     shellAliases = {
-      n = "nix develop";
       e = "emacsclient -nw";
+      ns = "nix-shell";
+      nd = "nix develop";
       z = "zellij --layout $HOME/.config/zellij/layout.kdl";
+      zt = "zellij action new-tab --cwd . --layout";
+      pr = "podman run -it --rm --detach-keys 'ctrl-d'";
+      pb = "podman build --progress=plain";
     };
     profileExtra = ''
       . $HOME/.nix-profile/etc/profile.d/nix.sh
-    '' + (if proxy != null then "export ALL_PROXY=${proxy}" else "");
-
+      LOCAL_RC=$HOME/.zshrc
+      if [ -f "$LOCAL_RC" ]; then
+        . "$LOCAL_RC"
+      fi
+    '';
     oh-my-zsh = {
       enable = true;
       theme = "simple";

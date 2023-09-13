@@ -25,7 +25,6 @@
             modules = [ ./hosts/tianshu-laptop.nix ];
             extraSpecialArgs = {
               inherit inputs dotfiles features;
-              proxy = "http://172.29.32.1:7890";
             };
           };
           "tianshu@tianshu-PC" = home-manager.lib.homeManagerConfiguration {
@@ -33,7 +32,6 @@
             modules = [ ./hosts/tianshu-pc.nix ];
             extraSpecialArgs = {
               inherit inputs dotfiles features;
-              proxy = "http://localhost:20171";
             };
           };
         };
