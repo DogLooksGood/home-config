@@ -14,6 +14,7 @@
     mosh
     zellij
     rnix-lsp
+    babashka
     curl
     wget
     tree
@@ -21,6 +22,9 @@
     tokei
     zip
     jet
+    helix
+    p7zip
+    qrencode
   ];
 
   home.file = {
