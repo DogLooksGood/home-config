@@ -25,6 +25,9 @@
     helix
     p7zip
     qrencode
+    librime
+    gnumake
+    gcc13
   ];
 
   home.file = {
@@ -54,7 +57,7 @@
     enableCompletion = true;
     enableAutosuggestions = false;
     shellAliases = {
-      e = "emacsclient -nw";
+      hms = "home-manager switch";
       ns = "nix-shell";
       nd = "nix develop";
       z = "zellij --layout $HOME/.config/zellij/layout.kdl";
@@ -63,6 +66,14 @@
       pb = "podman build --progress=plain";
     };
     profileExtra = ''
+      e() {
+        if [ $# -gt 0 ]; then
+          emacsclient -nw $@
+        else
+          emacsclient -nw -e "(switch-to-buffer nil)"
+        fi
+      }
+
       . $HOME/.nix-profile/etc/profile.d/nix.sh
       LOCAL_RC=$HOME/.zshrc
       if [ -f "$LOCAL_RC" ]; then
