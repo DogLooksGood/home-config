@@ -28,6 +28,8 @@
     librime
     gnumake
     gcc13
+    podman
+    podman-compose
   ];
 
   home.file = {
