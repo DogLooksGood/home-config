@@ -30,6 +30,7 @@
     gcc13
     podman
     podman-compose
+    tokio-console
   ];
 
   home.file = {
