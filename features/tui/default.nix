@@ -4,7 +4,6 @@
   ... }:
 {
   home.packages = with pkgs; [
-    emacs29-pgtk
     git
     pass
     simple-http-server
@@ -29,7 +28,6 @@
     gcc13
     podman
     podman-compose
-    tokio-console
     httpie
   ];
 

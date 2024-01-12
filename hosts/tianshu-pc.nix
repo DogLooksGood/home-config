@@ -3,6 +3,6 @@
   imports = [
     /${features}/global
     /${features}/tui
-    /${features}/gui
+    /${features}/wayland
   ];
 }
