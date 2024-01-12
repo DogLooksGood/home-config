@@ -4,7 +4,7 @@
   ... }:
 {
   home.packages = with pkgs; [
-    emacs29-nox
+    emacs29-pgtk
     git
     pass
     simple-http-server
@@ -22,7 +22,6 @@
     tokei
     zip
     jet
-    helix
     p7zip
     qrencode
     librime
@@ -31,6 +30,7 @@
     podman
     podman-compose
     tokio-console
+    httpie
   ];
 
   home.file = {
@@ -69,14 +69,6 @@
       pb = "podman build --progress=plain";
     };
     profileExtra = ''
-      e() {
-        if [ $# -gt 0 ]; then
-          emacsclient -nw $@
-        else
-          emacsclient -nw -e "(switch-to-buffer nil)"
-        fi
-      }
-
       . $HOME/.nix-profile/etc/profile.d/nix.sh
       LOCAL_RC=$HOME/.zshrc
       if [ -f "$LOCAL_RC" ]; then
@@ -87,11 +79,6 @@
       enable = true;
       theme = "simple";
     };
-  };
-
-  programs.exa = {
-    enable = true;
-    enableAliases = true;
   };
 
   programs.fzf = {

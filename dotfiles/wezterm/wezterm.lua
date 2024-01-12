@@ -1,6 +1,9 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
+local dark_mode = true
+local font = wezterm.font_with_fallback{ 'Inconsolata', 'LXGW WenKai' }
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -11,8 +14,14 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
-config.font = wezterm.font 'Mx437 IBM VGA 9x16'
+config.font = font
 
-config.color_scheme = 'Pro Light'
+if dark_mode then
+else
+   config.color_scheme = 'Pro Light'
+end
+
+config.use_fancy_tab_bar = true
+config.enable_wayland = true
 
 return config
