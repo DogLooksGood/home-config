@@ -13,7 +13,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, emacs-overlay, ... } @ inputs:
+  outputs = { nixpkgs, home-manager, ... } @ inputs:
     let
       features = ./features;
       dotfiles = ./dotfiles;

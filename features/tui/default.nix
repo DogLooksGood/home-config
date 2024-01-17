@@ -4,7 +4,6 @@
   ... }:
 {
   home.packages = with pkgs; [
-    git
     pass
     simple-http-server
     rust-analyzer
@@ -23,15 +22,16 @@
     jet
     p7zip
     qrencode
-    librime
     gnumake
     gcc13
     podman
     podman-compose
     httpie
+    usbutils
   ];
 
   home.file = {
+    ".config/containers".source = /${dotfiles}/containers;
     ".config/zellij".source = /${dotfiles}/zellij;
     ".config/wezterm".source = /${dotfiles}/wezterm;
     ".profile".text = ''
@@ -47,9 +47,9 @@
 
   programs.bash = {
     enable = true;
-    profileExtra = ''
-      . $HOME/.nix-profile/etc/profile.d/nix.sh
-    '';
+    # profileExtra = ''
+    #   . $HOME/.nix-profile/etc/profile.d/nix.sh
+    # '';
   };
 
   programs.zsh = {
@@ -67,7 +67,6 @@
       pb = "podman build --progress=plain";
     };
     profileExtra = ''
-      . $HOME/.nix-profile/etc/profile.d/nix.sh
       LOCAL_RC=$HOME/.zshrc
       if [ -f "$LOCAL_RC" ]; then
         . "$LOCAL_RC"
